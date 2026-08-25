@@ -1,8 +1,24 @@
 <!doctype html>
 <html>
-<head><meta charset="utf-8"><title>Sign-in complete</title></head>
+<head>
+  <meta charset="utf-8">
+  <title>Sign-in complete</title>
+</head>
 <body style="font-family: -apple-system, sans-serif; padding: 3rem; text-align: center;">
-<h1>Sign-in complete</h1>
-<p>If you're seeing this page instead of returning to the app automatically, you can close this window and reopen Brighton Homes Field Apps.</p>
+  <h1>Sign-in complete</h1>
+  <p>Returning to Brighton Homes Field Apps…</p>
+  <p id="fallback" style="display:none;">
+    If you're not redirected automatically, you can close this window and reopen the app.
+  </p>
+  <script>
+    (function () {
+      var params = window.location.search; // e.g. "?code=...&state=..."
+      var target = "brightonfieldapp://auth-callback" + params;
+      window.location.replace(target);
+      setTimeout(function () {
+        document.getElementById("fallback").style.display = "block";
+      }, 1500);
+    })();
+  </script>
 </body>
 </html>
